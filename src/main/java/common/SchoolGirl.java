@@ -61,13 +61,14 @@ public class SchoolGirl implements Pupil, Iterable<SchoolGirl.Register> {
         }
         return clone;
     }
-
+///ITERATOR
     @Override
     public Iterator<Register> iterator() {
         return new SchoolGirlIterator();
     }
 
-    private class SchoolGirlIterator implements Iterator<Register> {
+    private class SchoolGirlIterator implements
+           Iterator<Register> {
         private int cursor;
 
         @Override
@@ -80,10 +81,29 @@ public class SchoolGirl implements Pupil, Iterable<SchoolGirl.Register> {
             return registers[cursor++];
         }
     }
-
+/////////////
     static class Register {
         private String subjectName;
         private int mark;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        ////////////////////
 
         Register() {
         }

@@ -9,13 +9,23 @@ import java.util.List;
 
 public class Runner {
 
-    private static final int PUPILS_COUNT = 10;
-
+    private static final int PUPILS_COUNT = 10; //кол-во предметов
+    /// высчитавем срднее арифметическлое
+    private static List<Pupil> makePupils() {
+        List<Pupil> pupils = new ArrayList<>();
+        for (int i = 0; i < PUPILS_COUNT; i++) {
+            Pupil pupil = Pupils.createInstance(Pupils.randomStudentName(), 10);
+            Pupils.fillPupilMarks(pupil);
+            pupils.add(pupil);
+        }
+        return pupils;
+    }
     public static void main(String[] args) {
         List<Pupil> pupils = makePupils();
         System.out.println("Initial array:");
         printPupilsAvgMarks(pupils);
 
+     //сортировка по вострастанию
         SortUtils.sort(pupils, list -> {
             for (int i = 0; i < list.size(); i++) {
                 for (int j = 0; j < list.size() - 1; j++) {
@@ -29,7 +39,7 @@ public class Runner {
         });
         System.out.println("Sorted asc:");
         printPupilsAvgMarks(pupils);
-
+          //сортировка по убыванию
         SortUtils.sort(pupils, list -> {
             for (int i = 0; i < list.size(); i++) {
                 for (int j = 0; j < list.size() - 1; j++) {
@@ -45,15 +55,6 @@ public class Runner {
         printPupilsAvgMarks(pupils);
     }
 
-    private static List<Pupil> makePupils() {
-        List<Pupil> pupils = new ArrayList<>();
-        for (int i = 0; i < PUPILS_COUNT; i++) {
-            Pupil pupil = Pupils.createInstance(Pupils.randomStudentName(), 10);
-            Pupils.fillPupilMarks(pupil);
-            pupils.add(pupil);
-        }
-        return pupils;
-    }
 
     private static void printPupilsAvgMarks(List<Pupil> pupils) {
         double[] avg = new double[pupils.size()];

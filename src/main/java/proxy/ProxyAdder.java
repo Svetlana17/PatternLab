@@ -7,6 +7,7 @@ import java.net.Socket;
 import java.util.Scanner;
 
 class ProxyAdder {
+
     private ProxyAdder() {
     }
 
@@ -16,12 +17,13 @@ class ProxyAdder {
             out.println(a);
             out.println(b);
             out.flush();
+
             out.println(a*b);
             Scanner in = new Scanner(sender.getInputStream());
 
             return in.nextInt();
         }
-    }
+   }
 
 
 

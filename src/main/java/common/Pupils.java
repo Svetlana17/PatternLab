@@ -19,7 +19,7 @@ public class Pupils {
     public static void log(Pupil pupil) {
         System.out.println(pupilToString(pupil));
     }
-
+//
     public static String pupilToString(Pupil pupil) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(pupil.getSecondName()).append('\n');

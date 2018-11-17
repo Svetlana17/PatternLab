@@ -32,16 +32,18 @@ public class ChartApplication extends Application {
     private TableView<Data> table;
     private LineChart<Number, Number> lineChart;
 
-    private static final Function<Double, Double> FUNCTION = x -> x * x * Math.cos(x) - x;
+  private static final Function<Double, Double> FUNCTION = x -> x * x * Math.sin(x) + 2 * x;
 
+
+  //настройки окна
     @Override
     public void start(Stage stage) {
-        stage.setTitle("MVC demonstration");
+      
 
         table = createTableView();
         table.setItems(Controller.getInstance().getObservableData());
 
-        lineChart = createLineChart();
+        lineChart = createLineChart();//график
 
         updateSeries();
 
@@ -51,11 +53,11 @@ public class ChartApplication extends Application {
 
     private void initStage(Stage stage) {
         HBox hb = new HBox();
-        TextField addXName = new TextField();
-        addXName.setPromptText("Parameter");
-        addXName.prefWidthProperty().bind(table.widthProperty().divide(2));
+        TextField addXName = new TextField(); //текстовое поле
+        addXName.setPromptText("Сoefficient");
 
-        Button addButton = new Button("Add");
+
+        Button addButton = new Button("Добавить");
         addButton.setOnAction(e -> {
             table.getItems().add(new Data(Double.parseDouble(addXName.getText())));
             addXName.clear();
@@ -66,19 +68,19 @@ public class ChartApplication extends Application {
         hb.getChildren().addAll(addXName, addButton);
         hb.setSpacing(5);
 
-        VBox vbox = new VBox(5);
+        VBox vbox = new VBox(5);//вертикальный список
         vbox.getChildren().addAll(lineChart, table, hb);
         vbox.setAlignment(Pos.TOP_LEFT);
         vbox.setMinWidth(500);
 
         HBox layout = new HBox();
         layout.getChildren().add(vbox);
-        HBox.setHgrow(vbox, Priority.ALWAYS);
+        HBox.setHgrow(vbox, Priority.ALWAYS);//увеличивает таблицу по горизонтали
 
-        Scene scene = new Scene(layout, 700, 500);
+        Scene scene = new Scene(layout, 500, 400);
         stage.setScene(scene);
     }
-
+//отрисовка графика
     private LineChart<Number, Number> createLineChart() {
         NumberAxis xAxis = new NumberAxis();
         xAxis.setTickLength(0);
@@ -90,7 +92,7 @@ public class ChartApplication extends Application {
 
         return lineChart;
     }
-
+//добавление серии точек
     private Series<Number, Number> createSeries(ObservableList<Data> data) {
         Series<Number, Number> series = new Series<>();
         for (Data point : data) {
@@ -103,7 +105,7 @@ public class ChartApplication extends Application {
         TableView<Data> table = new TableView<>();
         table.setEditable(true);
 
-        TableColumn<Data, Number> parametersColumn = new TableColumn<>("Parameter");
+        TableColumn<Data, Number> parametersColumn = new TableColumn<>("Shag");
         parametersColumn.prefWidthProperty().bind(table.widthProperty().divide(2));
         parametersColumn.setCellFactory(TextFieldTableCell.forTableColumn(new NumberStringConverter()));
         parametersColumn.setCellValueFactory(new PropertyValueFactory<>("x"));
@@ -115,7 +117,9 @@ public class ChartApplication extends Application {
         });
 
         TableColumn<Data, Double> valuesColumn = new TableColumn<>("Value");
-        valuesColumn.prefWidthProperty().bind(table.widthProperty().divide(2));
+
+
+        valuesColumn.prefWidthProperty().bind(table.widthProperty().divide(2));//разделена на 2 колоки
         valuesColumn.setCellValueFactory(new PropertyValueFactory<Data, Double>("x") {
             @Override
             public ObservableValue<Double> call(TableColumn.CellDataFeatures<Data, Double> param) {
@@ -127,7 +131,7 @@ public class ChartApplication extends Application {
                 };
             }
         });
-
+//обработчик событий клавиатуры удаление из таблицы
         table.setOnKeyPressed(e -> {
             if (e.getCode() == KeyCode.DELETE) {
                 if (table.getSelectionModel().getSelectedItem() != null) {

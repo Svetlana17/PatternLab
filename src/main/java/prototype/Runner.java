@@ -20,22 +20,23 @@ public class Runner {
     }
 
     private static void test(Pupil instance, Prototype prototype) throws CloneNotSupportedException {
-        System.out.println("Orignal student:");
+        System.out.println("Оригинал студента:"); // клонированный ориганал без изменения
         System.out.println(instance);
         Pupils.log(instance);
 
         prototype.setPrototype(instance);
         Pupil clonedInstance = prototype.createInstance();
-        System.out.println("Cloned instance:");
+        System.out.println("Клонирование студента:");
         System.out.println(instance);
         Pupils.log(clonedInstance); /// подтвержаем что копия сделана верно
-
-        instance.setSubjectAt(0, "Removed Subject");
+        System.out.println("----------------------");
+        instance.setSubjectAt(0, "Удалить прдемет");
         instance.setMarkAt(0, -1);
-        System.out.println("Initial instance after change:");
+        System.out.println(" Тестирование что было:");
+        Pupils.log(clonedInstance);
+        System.out.println("Что стало после удаления:");
         Pupils.log(instance);
 
-        System.out.println("Cloned instance after change:");
-        Pupils.log(clonedInstance);
+
     }
 }
