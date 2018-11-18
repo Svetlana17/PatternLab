@@ -1,6 +1,6 @@
 package decorator;
 
-import common.Pupil;
+import Classes.Pupil;
 
 public class PupilSynchronized implements Pupil {
 

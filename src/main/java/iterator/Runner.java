@@ -1,7 +1,7 @@
 package iterator;
 
-import common.Pupils;
-import common.SchoolGirl;
+import Classes.Pupils;
+import Classes.SchoolGirl;
 
 import java.io.IOException;
 import java.util.Iterator;

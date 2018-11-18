@@ -7,24 +7,25 @@ import java.awt.event.MouseEvent;
 public class Face extends MouseAdapter implements Drawable {
 
     private final int width, height;
-
-    private Eye[] eyes;
-    private Nose nose;
     private Mouth mouth;
 
+    private Nose nose;
+    private Eye[] eyes;
+
     Face(int width, int height) {
-        this.width = width;
         this.height = height;
+        this.width = width;
+
         eyes = new Eye[]{
-                new Eye(width / 4, height / 4, width / 8, width / 16),
-                new Eye(3 * width / 4, height / 4, width / 8, width / 16)
+                new Eye(width / 3, height / 3, width / 10, width / 14),
+                new Eye(3 * width / 4, height / 3, width / 10, width / 14)
         };
-        nose = new Nose(width / 2, height / 2, width / 12);
-        mouth = new Mouth(width / 2, 3 * height / 4, width / 2);
+        nose = new Nose(width / 2, height / 2, width / 8);
+        mouth = new Mouth(width / 2, 3 * height / 4, width / 10);
     }
 
     public void draw(Graphics g) {
-        g.setColor(Color.black);
+        g.setColor(Color.red);
         g.drawArc(0, 0, width, height, 0, 360);
         for (Eye eye : eyes) {
             eye.draw(g);
@@ -54,7 +55,7 @@ public class Face extends MouseAdapter implements Drawable {
         private final int width;
         private boolean smiling;
 
-        private final static double ZONE_DELTA = 1.2;
+        private final static double ZONE_DELTA = 3.0;
 
         private Mouth(int centerX, int centerY, int width) {
             this.centerX = centerX;
@@ -88,21 +89,21 @@ public class Face extends MouseAdapter implements Drawable {
             }
         }
     }
-
+//рисуем нос
     private static class Nose implements Drawable {
         private final int centerX, centerY;
         private final int radius;
-        private Color color = Color.PINK;
+        private Color color = Color.yellow;
 
         private Nose(int centerX, int centerY, int radius) {
             this.centerX = centerX;
             this.centerY = centerY;
             this.radius = radius;
         }
-
+//меняем цвет носа
         private void checkClick(int pointerX, int pointerY) {
             if (Math.hypot(pointerX - centerX, pointerY - centerY) < radius) {
-                color = color == Color.PINK ? Color.YELLOW : Color.PINK;
+                color = color == Color.YELLOW ? Color.GREEN : Color.PINK;
             }
         }
 
@@ -141,7 +142,7 @@ public class Face extends MouseAdapter implements Drawable {
                 y = (int) Math.round(y / len * (bigRadius - smallRadius) + centerY);
             }
         }
-
+//метод для закрытия глаза
         private void checkClick(int pointerX, int pointerY) {
             if (Math.hypot(pointerX - centerX, pointerY - centerY) < bigRadius) {
                 closed ^= true;
@@ -153,6 +154,7 @@ public class Face extends MouseAdapter implements Drawable {
             if (g == null) {
                 return;
             }
+            //глаза
             g.drawArc(centerX - bigRadius, centerY - bigRadius, bigRadius * 2, bigRadius * 2, 0, 360);
             g.setColor(closed ? Color.GRAY : Color.WHITE);
             g.fillArc(centerX - bigRadius, centerY - bigRadius, bigRadius * 2, bigRadius * 2, 0, 360);

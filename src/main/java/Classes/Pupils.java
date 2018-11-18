@@ -1,4 +1,4 @@
-package common;
+package Classes;
 
 import decorator.PupilSynchronized;
 import factory_method.PupilFactory;

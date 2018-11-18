@@ -6,9 +6,9 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.util.Scanner;
 
-class ProxyAdder {
+class Server {
 
-    private ProxyAdder() {
+    private Server() {
     }
 
     static int getSum(int a, int b) throws IOException {
@@ -16,15 +16,13 @@ class ProxyAdder {
             PrintWriter out = new PrintWriter(sender.getOutputStream());
             out.println(a);
             out.println(b);
+
             out.flush();
 
-            out.println(a*b);
+
             Scanner in = new Scanner(sender.getInputStream());
 
             return in.nextInt();
         }
    }
-
-
-
 }

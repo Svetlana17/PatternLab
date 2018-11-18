@@ -1,7 +1,7 @@
 package factory_method;
 
-import common.Pupil;
-import common.Student;
+import Classes.Pupil;
+import Classes.Student;
 
 public class StudentFactory implements PupilFactory {
     @Override

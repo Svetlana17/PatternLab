@@ -1,7 +1,7 @@
 package prototype;
 
-import common.Pupil;
-import common.Pupils;
+import Classes.Pupil;
+import Classes.Pupils;
 import factory_method.SchoolGirlFactory;
 
 public class Runner {
@@ -15,6 +15,7 @@ public class Runner {
 
         Pupils.setPupilFactory(new SchoolGirlFactory());
         Pupil studentGirl = Pupils.createInstance(Pupils.randomStudentName(), 5);
+        System.out.println("Клонирование школьника");
         Pupils.fillPupilMarks(studentGirl);
         test(studentGirl, prototype);
     }

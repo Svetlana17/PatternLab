@@ -1,6 +1,6 @@
 package factory_method;
 
-import common.Pupil;
+import Classes.Pupil;
 
 public interface PupilFactory {
     Pupil createInstance(String secondName, int subjectsCount);

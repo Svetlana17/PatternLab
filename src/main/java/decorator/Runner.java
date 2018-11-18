@@ -1,7 +1,7 @@
 package decorator;
 
-import common.Pupil;
-import common.Pupils;
+import Classes.Pupil;
+import Classes.Pupils;
 
 import java.io.IOException;
 

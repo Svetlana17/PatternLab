@@ -38,7 +38,7 @@ public class ChartApplication extends Application {
   //настройки окна
     @Override
     public void start(Stage stage) {
-      
+
 
         table = createTableView();
         table.setItems(Controller.getInstance().getObservableData());

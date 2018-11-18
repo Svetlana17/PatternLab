@@ -1,7 +1,7 @@
 package strategy;
 
-import common.Pupil;
-import common.Pupils;
+import Classes.Pupil;
+import Classes.Pupils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Runner {
 
-    private static final int PUPILS_COUNT = 10; //кол-во предметов
+    private static final int PUPILS_COUNT = 10; //кол-во cтудентов
     /// высчитавем срднее арифметическлое
     private static List<Pupil> makePupils() {
         List<Pupil> pupils = new ArrayList<>();
@@ -22,7 +22,7 @@ public class Runner {
     }
     public static void main(String[] args) {
         List<Pupil> pupils = makePupils();
-        System.out.println("Initial array:");
+        System.out.println("Original array:");
         printPupilsAvgMarks(pupils);
 
      //сортировка по вострастанию

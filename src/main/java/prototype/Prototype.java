@@ -1,6 +1,6 @@
 package prototype;
 
-import common.Pupil;
+import Classes.Pupil;
 
 public class Prototype {
     private Pupil prototype;
